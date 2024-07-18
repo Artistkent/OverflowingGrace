@@ -37,7 +37,7 @@ const Carrier = ({imgsrc, alttext}:{ imgsrc: string, alttext:string}) => {
             </h3>
 
           <p className="m-0 text-sm ">
-            Awesome land! There's so much you can do here! Plant flowers, plant seeds, plant virus flowers, plant elemental evolution flowers, plant nuclear flowers, plant hyfroxinated flowers...
+            Awesome land! There&apos;s so much you can do here! Plant flowers, plant seeds, plant virus flowers, plant elemental evolution flowers, plant nuclear flowers, plant hyfroxinated flowers...
           </p>
 
           </div>
