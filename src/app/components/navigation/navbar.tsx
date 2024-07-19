@@ -10,16 +10,25 @@ const Navbar = () => {
           <div className="flex justify-around items-center h-full">
             {/* <Logo /> */}
             <ul className="hidden md:flex gap-x-6 ">
+
+            <li>
+                <Link href="/">
+                  <p>Home</p>
+                </Link>
+              </li>
+
             <li>
                 <Link href="/buy">
                   <p>Buy</p>
                 </Link>
               </li>
+
               <li>
                 <Link href="/sell">
                   <p>Sell</p>
                 </Link>
               </li>
+
               <li>
                 <Link href="/about">
                   <p>About</p>
@@ -29,6 +38,12 @@ const Navbar = () => {
               <li>
                 <Link href="/contacts">
                   <p>Contacts</p>
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/admin">
+                  <p>Admin</p>
                 </Link>
               </li>
 
