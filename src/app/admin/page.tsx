@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import Crud from '../components/crud/crud'
+import Crud from '../_components/crud/crud'
 
 const Admin = () => {
   return <div>About Yo!

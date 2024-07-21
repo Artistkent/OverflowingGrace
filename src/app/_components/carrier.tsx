@@ -1,13 +1,24 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {Property} from './types/types';
+
+const propertylist = require('../_server/data');
 
 
 
-const Carrier = ({imgsrc, alttext}:{ imgsrc: string, alttext:string}) => {
+const Carrier = () => {
+
+  let index = 0;
+
+  let property = propertylist[index];
+
   return (
     <>
-    <a
+
+
+{propertylist.map((property: Property) => (
+  <a
           
           className="group rounded-lg border my-5 mx-2 transition-colors border-gray-300 bg-white dark:border-neutral-700 dark:bg-neutral-800/30"
           target="_blank"
@@ -18,10 +29,10 @@ const Carrier = ({imgsrc, alttext}:{ imgsrc: string, alttext:string}) => {
 
             <Image draggable="false"
             className="h-full sm:w-full "
-          src={imgsrc}
+          src={property.url!}
           width={500}
           height={500}
-          alt={alttext}
+          alt={property.alt!}
             />
             
 
@@ -33,11 +44,11 @@ const Carrier = ({imgsrc, alttext}:{ imgsrc: string, alttext:string}) => {
       </span>
 
             <h3 className="font-semibold m-0 ">
-            &#8358; 700,000
+           {property.price}
             </h3>
 
           <p className="m-0 text-sm ">
-            Awesome land! There&apos;s so much you can do here! Plant flowers, plant seeds, plant virus flowers, plant elemental evolution flowers, plant nuclear flowers, plant hyfroxinated flowers...
+            {property.description}
           </p>
 
           </div>
@@ -46,6 +57,9 @@ const Carrier = ({imgsrc, alttext}:{ imgsrc: string, alttext:string}) => {
 
           
         </a>
+))
+    
+}
     </>
   );
 };

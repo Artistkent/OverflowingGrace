@@ -1,6 +1,5 @@
-'use client';
-import Image from "next/image";
-import Carrier from "./components/carrier"
+
+import Carrier from "./_components/carrier"
 import React from "react";
 
 export default function Home() {
@@ -12,11 +11,7 @@ export default function Home() {
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl 2xl:grid-cols-2 lg:text-center">
 
-      <Carrier imgsrc="/land1.jpg" alttext="Picture of Land" />
-
-      <Carrier imgsrc="/land1.jpg" alttext="Picture of Land" />
-
-      <Carrier imgsrc="/land1.jpg" alttext="Picture of Land" />
+      <Carrier/>
 
  
 
