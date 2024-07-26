@@ -4,6 +4,15 @@
       "method": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       "maxAgeSeconds": 3600,
       "responseHeader": ["Content-Type"]
-    }
+    },
+    
+      {
+        "origin": ["https://overflowing-grace.web.app"],
+        "method": ["GET"],
+        "maxAgeSeconds": 3600,
+        "responseHeader": ["Content-Type"]
+      }
+    
+    
   ]
   

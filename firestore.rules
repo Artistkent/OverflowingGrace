@@ -1,0 +1,7 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access to all documents for demonstration purposes.
+    // This is insecure for production.
+    allow read, write: if true;
+  }
+}
