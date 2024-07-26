@@ -30,7 +30,7 @@ const Crud = () => {
 
     useEffect(() => {
 
-      axios.get('/api/properties')
+      axios.get('api/properties')
         .then(response => setProperties(response.data))
         .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -113,7 +113,7 @@ const Crud = () => {
 
 
     const saveChanges = () => {
-      axios.post('/api/properties', properties)
+      axios.post('api/properties', properties)
         .then(response => console.log('Data saved:', response))
         .catch(error => console.error('Error saving data:', error));
     };
