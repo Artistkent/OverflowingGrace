@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {Property} from './types/types';
+import {Property, PropertyWithId} from './types/types';
+import axios from "axios";
 
-const propertylist = require('../_lib/properties.json');
+
 
 
 
 const Carrier = () => {
 
+  const [properties, setProperties] = useState<PropertyWithId[]>([]);
+
+
+
+
+  useEffect(() => {
+
+    axios.get('api/properties')
+      .then(response => setProperties(response.data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
   return (
     <>
 
 
-{propertylist.map((property: Property, index:number) => (
+{properties.map((property: Property, index:number) => (
   <a key={index}
           
           className="group rounded-lg border my-5 mx-2 transition-colors border-gray-300 bg-white dark:border-neutral-700 dark:bg-neutral-800/30"
