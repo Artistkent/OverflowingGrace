@@ -1,4 +1,5 @@
 
+'use client'
 import Carrier from "./_components/carrier"
 import React from "react";
 

@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {Property, PropertyWithId} from './types/types';
+import {Property} from './types/types';
 import axios from "axios";
-
+import { storage } from "../_firebase/firebaseConfig";
+import { getDownloadURL, ref } from "firebase/storage";
 
 
 
 
 const Carrier = () => {
 
-  const [properties, setProperties] = useState<PropertyWithId[]>([]);
-
-
-
+  const [properties, setProperties] = useState<Property[]>([]);
 
   useEffect(() => {
+    const fetchProperties = async () => {
+      const propertiesRef = ref(storage, 'properties.json');
+      try {
+        const url = await getDownloadURL(propertiesRef);
+        const response = await axios.get(url);
+        setProperties(response.data);
+      } catch (error) {
+        console.error('Error fetching properties:', error);
+      }
+    };
 
-    axios.get('api/properties')
-      .then(response => setProperties(response.data))
-      .catch(error => console.error('Error fetching data:', error));
+    fetchProperties();
   }, []);
 
   return (
