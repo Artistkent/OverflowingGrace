@@ -1,10 +1,27 @@
+'use client'
 import React from "react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import {
+	signInWithGoogle,
+	signOut,
+	onAuthStateChanged
+} from "@/app/_lib/firebase/auth";
 
+
+
+function useUserSession(initialUser: any) {
+	return;
+}
 
 const Navbar = () => {
+
+
+
   return (
     <>
+
+
       <div className="w-full h-20 sticky top-0">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-around items-center h-full">

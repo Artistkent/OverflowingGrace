@@ -5,3 +5,7 @@ export interface Property {
     url: string | undefined;
     alt: string | undefined;
   }
+
+  export interface PropertyWithId extends Property {
+    id?: string;
+}

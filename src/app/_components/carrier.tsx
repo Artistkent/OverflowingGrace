@@ -3,22 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import {Property} from './types/types';
 
-const propertylist = require('../_server/data');
+const propertylist = require('../_lib/properties.json');
 
 
 
 const Carrier = () => {
 
-  let index = 0;
-
-  let property = propertylist[index];
 
   return (
     <>
 
 
-{propertylist.map((property: Property) => (
-  <a
+{propertylist.map((property: Property, index:number) => (
+  <a key={index}
           
           className="group rounded-lg border my-5 mx-2 transition-colors border-gray-300 bg-white dark:border-neutral-700 dark:bg-neutral-800/30"
           target="_blank"

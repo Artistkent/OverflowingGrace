@@ -1,95 +1,20 @@
-// components/ItemList.tsx
-import { useState, useEffect, ChangeEvent, Key } from 'react';
 
-import { storage } from '../../../../firebaseconfig';
-import { addItem, getItems, updateItem, deleteItem, Item } from '../../../../firestoreService';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { useState, useEffect, ChangeEvent, Key, SetStateAction } from 'react';
+import Image from "next/image";
 import axios from 'axios';
 import {Property} from '../types/types';
+import {PropertyWithId} from '../types/types';
 
-export default function Crud () {
-
-
-  const [items, setItems] = useState<Item[]>([]);
-  const [newItem, setNewItem] = useState('');
-  const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [editingText, setEditingText] = useState('');
-
-  const [image, setImage] = useState<File | null>(null);
-  const [url, setUrl] = useState<string>('');
-  const [progress, setProgress] = useState<number>(0);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
-
-  const handleUpload = () => {
-    if (image) {
-      const storageRef = ref(storage, `images/${image.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, image);
-
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgress(progress);
-        },
-        (error) => {
-          console.error('Upload failed:', error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setUrl(downloadURL);
-          });
-        }
-      );
-    }
-}
-      
-
-
-
-
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  const fetchItems = async () => {
-    const items = await getItems();
-    setItems(items);
-  };
-
-  const handleAddItem = async () => {
-    await addItem({ text: newItem });
-    setNewItem('');
-    fetchItems();
-  };
-
-  const handleUpdateItem = async (id: string) => {
-    await updateItem(id, { text: editingText });
-    setEditingItem(null);
-    setEditingText('');
-    fetchItems();
-  };
-
-  const handleDeleteItem = async (id: string) => {
-    await deleteItem(id);
-    fetchItems();
-  };
+const Crud = () => {
 
   //Data Editor Start
   //
   //
   //
 
- 
+
   
-  
-  
-    const [properties, setProperties] = useState<Property[]>([]);
+    const [properties, setProperties] = useState<PropertyWithId[]>([]);
 
 
 
@@ -105,10 +30,32 @@ export default function Crud () {
 
     useEffect(() => {
 
-      axios.get('http://localhost:5000/properties')
+      axios.get('/api/properties')
         .then(response => setProperties(response.data))
         .catch(error => console.error('Error fetching data:', error));
     }, []);
+
+
+
+
+    // useEffect(() => {
+    //   const fetchProperties = async () => {
+    //     try {
+    //       const querySnapshot = await getDocs(collection(db, "properties"));
+    //       const propertiesList: PropertyWithId[] = querySnapshot.docs.map(doc => ({
+    //         id: doc.id,
+    //         ...doc.data()
+    //       })) as PropertyWithId[];
+          
+    //       setProperties(propertiesList);
+
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   };
+  
+    //   fetchProperties();
+    // }, []);
 
     const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = event.target;
@@ -117,11 +64,31 @@ export default function Crud () {
       setProperties(newProperties);
     };
 
+    // const handleInputChange = (index: number, event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //   const { name, value } = event.target;
+    //   const newProperties = [...properties];
+    //   newProperties[index] = { ...newProperties[index], [name]: value };
+    //   setProperties(newProperties);
+    // };
+
     const addToList = () => {
       const newerProperties = [...properties];
       const concatProperties:Property[] = newerProperties.concat(addedProperty);
       setProperties(concatProperties);
+      // console.log(newerProperties);
     };
+
+    // const addToList = async () => {
+    //   try {
+    //     const docRef = await addDoc(collection(db, "properties"), addedProperty[0]);
+    //     setProperties([...properties, { id: docRef.id, ...addedProperty[0] }]);
+    //   } catch (error) {
+    //     console.error("Error adding document: ", error);
+    //   }
+    // };
+
+   
+
 
     const deleteFromList = (index:number) => {
       const newerProperties = [...properties];
@@ -129,11 +96,45 @@ export default function Crud () {
       setProperties(newerProperties);
     };
 
+     // const deleteFromList = async (index: number) => {
+    //   const propertyToDelete = properties[index];
+    //   if (propertyToDelete.id) {
+    //     try {
+    //       await deleteDoc(doc(db, "properties", propertyToDelete.id));
+    //       const newProperties = properties.filter((_, i) => i !== index);
+    //       setProperties(newProperties);
+    //     } catch (error) {
+    //       console.error("Error deleting document: ", error);
+    //     }
+    //   }
+    // };
+
+    // 
+
+
     const saveChanges = () => {
-      axios.post('http://localhost:5000/properties', properties)
+      axios.post('/api/properties', properties)
         .then(response => console.log('Data saved:', response))
         .catch(error => console.error('Error saving data:', error));
     };
+
+
+    // const saveChanges = async () => {
+      //   try {
+      //     const batch = writeBatch(db);
+      //     properties.forEach(property => {
+      //       if (property.id) {
+      //         const docRef = doc(db, "properties", property.id);
+      //         batch.update(docRef, property as Omit<PropertyWithId, 'id'>);
+      //       }
+      //     });
+      //     await batch.commit();
+      //     console.log("Data saved successfully");
+      //   } catch (error) {
+      //     console.error("Error saving data:", error);
+      //   }
+      // };
+
 //
 //
 //
@@ -190,7 +191,15 @@ export default function Crud () {
               onChange={(e) => handleInputChange(index, e)}
             />
           </div>
-          <img src={property.url} alt={property.alt} style={{ width: '100px', height: '100px' }} />
+          {/* <img src={property.url} alt={property.alt} style={{ width: '100px', height: '100px' }} /> */}
+          
+          <Image draggable="false"
+            className="h-full sm:w-full "
+          src={property.url!}
+          width={100}
+          height={100}
+          alt={property.alt!}
+            />
 
           <button onClick={() => deleteFromList(index)}>Delete Item</button>
         </div>
@@ -203,44 +212,8 @@ export default function Crud () {
 
       <h1>CRUD App</h1>
 
-      <div>
-      <input type="file" onChange={handleChange} />
-      <button onClick={handleUpload}>Upload</button>
-      {progress > 0 && <p>Upload progress: {progress}%</p>}
-      {url && <img src={url} alt="Uploaded image" />}
-    </div>
-
-      <input
-        type="text"
-        value={newItem}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewItem(e.target.value)}
-      />
-      
-      <button onClick={handleAddItem}>Add Item</button>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {editingItem === item.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={editingText}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingText(e.target.value)}
-                />
-                <button onClick={() => handleUpdateItem(item.id!)}>Save</button>
-                <button onClick={() => setEditingItem(null)}>Cancel</button>
-              </div>
-            ) : (
-              <div>
-                {item.text}
-                <button onClick={() => { setEditingItem(item.id!); setEditingText(item.text); }}>Edit</button>
-                <button onClick={() => handleDeleteItem(item.id!)}>Delete</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
 
+export default Crud;

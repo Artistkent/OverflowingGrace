@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "overflowing-grace"
-  }
+    "default": "overflowing-grace",
+    "overflowing-grace": "overflowing-grace"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
