@@ -1,13 +1,8 @@
 'use client'
 import React from "react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Bars4Icon, ArrowsPointingOutIcon } from '@heroicons/react/24/solid';
-import {
-	signInWithGoogle,
-	signOut,
-	onAuthStateChanged
-} from "@/app/_lib/firebase/auth";
 import "@/app/_styles/animations.css";
 
 
@@ -68,8 +63,8 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link href="/admin" className="hover:text-gray-800 hover:font-bold">
-                  <p>Admin</p>
+                <Link href="/console" className="hover:text-gray-800 hover:font-bold">
+                  <p>Console</p>
                 </Link>
               </li>
 

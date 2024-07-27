@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "functions/src/data.js", "src/app/_components/navigation/navbar.jsx", "src/app/_lib/firebase/firebaseConfig.js", "functions/src/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "functions/src/data.js", "src/app/_components/navigation/navbar.jsx", "src/app/_lib/firebase/firebaseConfig.js", "functions/src/index.js", "src/app/_context/AuthContext.js"],
   "exclude": ["node_modules"]
 }

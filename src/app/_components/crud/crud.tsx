@@ -1,11 +1,11 @@
 
-import { useState, useEffect, ChangeEvent, Key, SetStateAction } from 'react';
+import { useState, useEffect, ChangeEvent} from 'react';
 import Image from "next/image";
 import axios from 'axios';
 import {Property} from '../types/types';
 import {PropertyWithId} from '../types/types';
 import { ref, getDownloadURL, uploadString, uploadBytes  } from "firebase/storage";
-import { storage } from "../../_firebase/firebaseConfig";
+import { storage, auth } from "../../_firebase/firebaseConfig";
 
 const Crud = () => {
 
@@ -13,13 +13,11 @@ const Crud = () => {
   //
   //
   //
-
-
   
     const [properties, setProperties] = useState<PropertyWithId[]>([]);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
-    const [uploadButton, setuploadButton] = useState<boolean | null>(false);
+    const [uploadButton, setUploadButton] = useState<boolean | null>(false);
 
 
 
@@ -62,9 +60,9 @@ const Crud = () => {
     if (event.target.files && event.target.files[0]) {
       setSelectedFile(event.target.files[0]);
       // setUploadingIndex(index);
-      setuploadButton(!uploadButton);
+      setUploadButton(!uploadButton);
     } else{
-      setuploadButton(uploadButton)
+      setUploadButton(uploadButton)
     }
   };
 
@@ -72,13 +70,16 @@ const Crud = () => {
    
       //setSelectedFile(event.target.files[0]);
       setUploadingIndex(index);
-      setuploadButton(!uploadButton);
+      setUploadButton(true);
     
   }
 
 
 
   const uploadImage = async (file: File, index: number) => {
+    const user = auth.currentUser;
+
+    if (user) {
     const imageRef = ref(storage, `images/${file.name}`);
     try {
       await uploadBytes(imageRef, file);
@@ -88,6 +89,9 @@ const Crud = () => {
       setProperties(newProperties);
     } catch (error) {
       console.error('Error uploading image:', error);
+    }
+  }else {
+      console.error('User is not authenticated.');
     }
   };
 
@@ -106,8 +110,6 @@ const Crud = () => {
   };
 
 
-
-
   const saveChanges = async () => {
     const propertiesRef = ref(storage, 'properties.json');
     try {
@@ -124,6 +126,7 @@ const Crud = () => {
       uploadImage(selectedFile, uploadingIndex);
       setSelectedFile(null);
       setUploadingIndex(null);
+      setUploadButton(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFile, uploadingIndex]);
@@ -136,6 +139,7 @@ const Crud = () => {
 
   return (
     <div>
+        
 
 
 <div>
@@ -196,7 +200,7 @@ const Crud = () => {
 
 <div>
       <label>Choose Image: </label>
-      <input
+      <input accept="image/*" 
         type="file"
         onChange={(e) => handleFileChange(e, index)}
       />
@@ -214,10 +218,11 @@ const Crud = () => {
       
       <button onClick={saveChanges} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 mx-1 rounded">Save Changes</button>
     </div>
+        </div>
 
-      <h1>CRUD App</h1>
 
-    </div>
+
+
   );
 };
 
