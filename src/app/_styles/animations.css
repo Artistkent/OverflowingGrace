@@ -1,0 +1,16 @@
+/* styles/globals.css or styles/animations.css */
+
+.max-h-0 {
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .max-h-full {
+    max-height: 1000px; /* Arbitrary large value to ensure the content fits */
+    overflow: hidden;
+  }
+  
+  .transition-max-height {
+    transition: max-height 0.5s ease-in-out;
+  }
+  
