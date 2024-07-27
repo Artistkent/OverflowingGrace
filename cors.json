@@ -11,6 +11,13 @@
         "method": ["GET"],
         "maxAgeSeconds": 3600,
         "responseHeader": ["Content-Type"]
+      },
+
+      {
+        "origin": ["https://overflowing-grace.firebaseapp.com/"],
+        "method": ["GET"],
+        "maxAgeSeconds": 3600,
+        "responseHeader": ["Content-Type"]
       }
     
     
