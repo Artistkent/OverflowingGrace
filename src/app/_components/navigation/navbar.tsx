@@ -19,18 +19,12 @@ const Navbar = () => {
 
 <nav className="bg-white opacity-95 sticky top-0 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className=" text-2xl font-bold">
-          <Link href="/" className="hover:text-gray-800 hover:font-extrabold">
-                  <p>MyBrand</p>
+        <div className=" text-xl font-bold">
+          <Link href="/" className="hover:text-gray-800 hover:font-extrabold text-center">
+                  <p>Overwhelming Grace</p>
                 </Link>
                 </div>
         
-        {/* <div className="hidden md:flex space-x-6">
-          <a href="#" className="text-white hover:text-gray-300">Home</a>
-          <a href="#" className="text-white hover:text-gray-300">About</a>
-          <a href="#" className="text-white hover:text-gray-300">Services</a>
-          <a href="#" className="text-white hover:text-gray-300">Contact</a>
-        </div> */}
 
 <div id="NAVBAR ITEMS" className="w-full">
         <div className="container mx-auto px-4 h-full">
@@ -62,11 +56,6 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li>
-                <Link href="/console" className="hover:text-gray-800 hover:font-bold">
-                  <p>Console</p>
-                </Link>
-              </li>
 
             </ul>
             {/* <Button /> */}
@@ -79,13 +68,21 @@ const Navbar = () => {
             {isOpen ? <ArrowsPointingOutIcon className="w-6 h-6" /> : <Bars4Icon className="w-6 h-6" />}
           </button>
         </div>
+
+        <div className="hidden md:flex font-bold">
+          <Link href="/console" className="hover:text-gray-800 hover:font-extrabold">
+                  <p>Console</p>
+                </Link>
+                </div>
+
       </div>
+
       {isOpen && (
-        <div className="md:hidden mt-4 flex flex-col space-y-2">
-          <a href="#" className=" hover:text-gray-300">Home</a>
+        <div className="md:hidden mt-4 flex flex-col space-y-2 text-lg text-center">
           <a href="#" className=" hover:text-gray-300">About</a>
           <a href="#" className=" hover:text-gray-300">Services</a>
           <a href="#" className=" hover:text-gray-300">Contact</a>
+          <a href="#" className=" hover:text-gray-300 font-bold">Console</a>
         </div>
       )}
     </nav>

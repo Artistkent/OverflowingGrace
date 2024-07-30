@@ -33,13 +33,14 @@ const Carrier = () => {
 
 
 {properties.map((property: Property, index:number) => (
-  <a key={index}
+  <div key={index}
           
           className="group rounded-lg border my-5 mx-2 transition-colors border-gray-300 bg-white dark:border-neutral-700 dark:bg-neutral-800/30"
-          target="_blank"
           rel="noopener noreferrer"
         >
-            <div className="items-center rounded-lg grid md:grid-cols-2 text-left lg:mb-0 lg:w-full lg:max-w-5xl overflow-hidden">
+            
+
+          <div className="items-center rounded-lg grid md:grid-cols-2 text-left lg:mb-0 lg:w-full lg:max-w-5xl overflow-hidden">
 
 
             <Image draggable="false"
@@ -51,7 +52,7 @@ const Carrier = () => {
             />
             
 
-          <div id="text-container" className="group h-full p-4 grid  transition-colors border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
+          <div id="text-container" className="group h-full p-4 grid  transition-colors border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 space-y-3 ">
 
 
       <span className="group h-fit w-fit py-1 px-4 rounded-2xl transition-colors border-gray-300 bg-yellow-300 0">
@@ -70,8 +71,23 @@ const Carrier = () => {
 
           </div>
 
+
+{/* Lower part */}
+
+          <div className="flex p-3 rounded-lg text-left lg:mb-0 lg:w-full lg:max-w-5xl overflow-hidden flex-nowrap">
+
+          <div className="flex items-start h-full w-full ">
+  <p>Lagos</p>
+</div>
+
+{/* Stuffff */}
+
+<div className="flex justify-around items-end">
+  <p className="px-2">Call</p> <p>Email</p>
+</div>
+          </div>
           
-        </a>
+        </div>
 ))
     
 }
