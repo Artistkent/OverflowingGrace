@@ -5,6 +5,7 @@ import {Property} from './types/types';
 import axios from "axios";
 import { storage } from "../_firebase/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
+import Slider from 'react-slick';
 
 
 
@@ -28,6 +29,19 @@ const Carrier = () => {
     fetchProperties();
   }, []);
 
+  const sliderSettings = {
+    accessibility:true,
+    adaptiveHeight:true,
+    mobileFirst:true,
+    arrows:true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+  };
+
   return (
     <>
 
@@ -43,13 +57,24 @@ const Carrier = () => {
           <div className="items-center rounded-lg grid md:grid-cols-2 text-left lg:mb-0 lg:w-full lg:max-w-5xl overflow-hidden">
 
 
-            <Image draggable="false"
-            className="h-full sm:w-full "
-          src={property.url!}
-          width={500}
-          height={500}
-          alt={property.alt!}
-            />
+
+<Slider className="my-7 " {...sliderSettings}>
+              {property.url && Array.isArray(property.url) &&  property.url.map((imageUrl, i) => (
+                <div key={i}>
+                  <Image draggable="false"
+                    className="h-full sm:w-full"
+                    src={imageUrl}
+                    width={100}
+                    height={100}
+                    alt={property.alt || '' }
+                  />
+                 
+
+                </div>
+
+                
+              ))}
+            </Slider>
             
 
           <div id="text-container" className="group h-full p-4 grid  transition-colors border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 space-y-3 ">
