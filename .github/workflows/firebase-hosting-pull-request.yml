@@ -15,7 +15,7 @@ jobs:
       name: firebase
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci
+      - run: npm ci && firebase deploy
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
