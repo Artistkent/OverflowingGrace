@@ -79,10 +79,19 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col space-y-2 text-lg text-center">
-          <a href="#" className=" hover:text-gray-300">About</a>
-          <a href="#" className=" hover:text-gray-300">Services</a>
-          <a href="#" className=" hover:text-gray-300">Contact</a>
-          <a href="#" className=" hover:text-gray-300 font-bold">Console</a>
+           <Link href="/buy" className="hover:text-gray-300 hover:font-bold">
+                  <p>Buy</p>
+                </Link>
+          <Link href="/sell" className="hover:text-gray-300 hover:font-bold">
+                  <p>Sell</p>
+          </Link>
+          <Link href="/about" className="hover:text-gray-300 hover:font-bold">
+                  <p>About</p>
+          </Link>
+          <Link href="/console" className="hover:text-gray-300 hover:font-extrabold">
+                  <p>Console</p>
+          </Link>
+          
         </div>
       )}
     </nav>

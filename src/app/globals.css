@@ -24,6 +24,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 @layer utilities {
@@ -33,7 +35,29 @@ body {
 }
 
 .carousel-container {
-  max-height: 500px; /* Set the desired height */
-  overflow: hidden; /* Ensure overflow is hidden */
-  width: "auto";
+  max-height: 450px; 
+}
+
+.slick-list, .slick-track{
+  height: 100% !important;;
+}
+
+.slick-slide{
+  vertical-align: middle;
+}
+
+.slick-slide > *{
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  height: 100%;
+}
+
+.carousel-must-flex{
+  display: flex!important;
+  vertical-align: middle!important;
+  justify-content: center;
+  align-items: center;
+  height: 100%!important;
+  background: radial-gradient(white, black)
 }

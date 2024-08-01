@@ -84,7 +84,7 @@ export default function Console() {
  
   return (
 <>
-{loggedIn? <div>About Yo!
+{loggedIn? <div>Welcome to the Console
 
 
 <Crud/>
