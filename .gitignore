@@ -5,7 +5,6 @@
 
 ### Firebase Patch ###
 .runtimeconfig.json
-.firebase/
 
 ### NextJS ###
 # dependencies
