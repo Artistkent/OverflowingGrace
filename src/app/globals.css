@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+
+.carousel-container {
+  max-height: 500px; /* Set the desired height */
+  overflow: hidden; /* Ensure overflow is hidden */
+  width: "auto";
+}

@@ -265,7 +265,7 @@ const sliderSettings = {
               onChange={(e) => handleInputChange(index, e)}
             />
           </div>
-          <div>
+          {/* <div>
             <label>Image URL: </label>
             <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="text"
@@ -273,7 +273,7 @@ const sliderSettings = {
               value ={property.url ? property.url[0] : ''}
               onChange={(e) => handleInputChange(index, e)}
             />
-          </div>
+          </div> */}
           <div>
             <label>Image Alt Text: </label>
             <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -284,7 +284,17 @@ const sliderSettings = {
             />
           </div>
 
-          <Slider className="my-7" {...sliderSettings}>
+          <div>
+            <label>Location: </label>
+            <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              type="text"
+              name="location"
+              value={property.location}
+              onChange={(e) => handleInputChange(index, e)}
+            />
+          </div>
+
+          <Slider className="my-7 " {...sliderSettings}>
               {property.url && Array.isArray(property.url) &&  property.url.map((imageUrl, i) => (
                 <div key={i}>
                   <Image draggable="false"

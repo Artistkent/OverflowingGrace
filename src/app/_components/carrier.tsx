@@ -58,7 +58,7 @@ const Carrier = () => {
 
 
 
-<Slider className="my-7 " {...sliderSettings}>
+<Slider className="my-7 carousel-container" {...sliderSettings}>
               {property.url && Array.isArray(property.url) &&  property.url.map((imageUrl, i) => (
                 <div key={i}>
                   <Image draggable="false"
@@ -80,9 +80,9 @@ const Carrier = () => {
           <div id="text-container" className="group h-full p-4 grid  transition-colors border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 space-y-3 ">
 
 
-      <span className="group h-fit w-fit py-1 px-4 rounded-2xl transition-colors border-gray-300 bg-yellow-300 0">
+      {/* <span className="group h-fit w-fit py-1 px-4 rounded-2xl transition-colors border-gray-300 bg-yellow-300 0">
       Top Property
-      </span>
+      </span> */}
 
             <h3 className="font-semibold m-0 ">
            {property.price}
@@ -102,7 +102,7 @@ const Carrier = () => {
           <div className="flex p-3 rounded-lg text-left lg:mb-0 lg:w-full lg:max-w-5xl overflow-hidden flex-nowrap">
 
           <div className="flex items-start h-full w-full ">
-  <p>Lagos</p>
+  <h3>{property.location}</h3>
 </div>
 
 {/* Stuffff */}

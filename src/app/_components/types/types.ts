@@ -4,6 +4,7 @@ export interface Property {
     description: string | number | readonly string[] | undefined;
     url: Array<string> ;
     alt?: string | undefined;
+    location?:string | undefined;
   }
 
   export interface PropertyWithId extends Property {
